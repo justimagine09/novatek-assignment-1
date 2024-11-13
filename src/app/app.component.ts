@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AnalogClockComponent } from './components/analog-clock/analog-clock.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, AnalogClockComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
