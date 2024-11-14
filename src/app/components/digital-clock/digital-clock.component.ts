@@ -5,8 +5,9 @@ import { CommonModule } from '@angular/common';
 import { TimeServiceService } from '../../services/time-service.service';
 
 
-const MAX_FONT_SIZE = 5;
-const MIN_FONT_SIZE = 1;
+const CLOCK_FONT_SIZE = 3.5;
+const FOOT_HEIGHT = 10;
+const THRESHOLD = 500;
 
 @Component({
   selector: 'app-digital-clock',
@@ -31,10 +32,15 @@ export class DigitalClockComponent implements AfterViewInit {
     combineLatest([this.timeService.hours$, this.timeService.minutes$, this.timeService.seconds$])
       .pipe(takeUntil(this.destroyed$$))
       .subscribe(([hours, minutes, seconds]) => {
-        this.hours = hours > 12 ? hours - 12 : hours;
+        if (hours < 24) {
+          this.hours = hours > 12 ? hours - 12 : hours;
+        } else {
+          this.hours = 0;
+        }
+
         this.minutes = minutes;
         this.seconds = seconds;
-        this.suffix = hours > 12 ? 'PM' : 'AM';
+        this.suffix = this.hours >= 12 ? 'PM' : 'AM';
       });
   }
 
@@ -42,8 +48,8 @@ export class DigitalClockComponent implements AfterViewInit {
     HtmlUtilities.resizeObserver(this.frameElementRef!.nativeElement)
       .pipe(takeUntil(this.destroyed$$))
       .subscribe(() => {
-        this.clockFontSize = this.frameElementRef!.nativeElement.clientWidth / 500 * 3.5;
-        this.footHeight = this.frameElementRef!.nativeElement.clientWidth / 500 * 10;
+        this.clockFontSize = this.frameElementRef!.nativeElement.clientWidth / THRESHOLD * CLOCK_FONT_SIZE;
+        this.footHeight = this.frameElementRef!.nativeElement.clientWidth / THRESHOLD * FOOT_HEIGHT;
         this.cdr.detectChanges();
       }); 
   }

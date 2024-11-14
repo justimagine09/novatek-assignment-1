@@ -1,6 +1,10 @@
 <div #frame class="frame">
   <div #clock class="clock">
-    <div class="clock--hour-hand" [style.--degree]="hourDegree"></div>
+    <div
+      class="clock--hour-hand"
+      [style.--degree]="hourDegree"
+      [style.width.px]="hourHandWidth"
+    ></div>
 
     <span
       *ngFor="let item of numbers"
@@ -8,20 +12,22 @@
       [style.--pos-x]="item.posX + 'px'"
       [style.--pos-y]="item.posY + 'px'"
       [style.font-size.em]="numberFontSize"
-      >
+    >
       {{ item.value }}
     </span>
 
     <div
       class="clock--minute-hand"
       [style.--minute-degree]="minuteDegree"
+      [style.width.px]="minuteHandWidth"
     ></div>
 
     <div
       class="clock--second-hand"
       [style.--second-degree]="secondDegree"
+      [style.width.px]="secondHandWidth"
     ></div>
 
-    <div class="point"></div>
+    <div class="point" [style.width.px]="pointDiameter" [style.height.px]="pointDiameter"></div>
   </div>
 </div>

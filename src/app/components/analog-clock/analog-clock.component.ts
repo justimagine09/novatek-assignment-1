@@ -10,12 +10,11 @@ interface ClockNumber {
   posY: number;
 }
 
-enum NumberFontSizes {
-  large = 2.3,
-  medium = 2,
-  small = 1.5,
-  extraSmall = 1
-}
+const HOUR_HAND_WIDTH = 12;
+const MINUTE_HAND_WIDTH = 8;
+const SECOND_HAND_WIDTH = 4;
+const POINT_DIAMETER= 20;
+const THRESHOLD = 500;
 
 @Component({
   selector: 'app-analog-clock',
@@ -31,7 +30,11 @@ export class AnalogClockComponent implements AfterViewInit, OnDestroy {
   minutes = 4;
   seconds = 0;
   ready = false;
-  numberFontSize: NumberFontSizes = NumberFontSizes.large;
+  numberFontSize = 0;
+  hourHandWidth = 0;
+  minuteHandWidth = 0;
+  secondHandWidth = 0;
+  pointDiameter = 0;
   numbers: ClockNumber[] = [];
 
   private maxHours = 12;
@@ -128,20 +131,16 @@ export class AnalogClockComponent implements AfterViewInit, OnDestroy {
   }
 
   private updateNumberFontSizeAndView(clockWidth: number) {
-    if(clockWidth <= 270) {
-      this.numberFontSize = NumberFontSizes.extraSmall;
-    } else if(clockWidth < 300) {
-      this.numberFontSize = NumberFontSizes.small;
-    } else if (clockWidth < 430) {
-      this.numberFontSize = NumberFontSizes.medium;
-    } else {
-      this.numberFontSize = NumberFontSizes.large;
-    }
+    this.numberFontSize = clockWidth / THRESHOLD * 2.5;
+    this.hourHandWidth = clockWidth / THRESHOLD * HOUR_HAND_WIDTH;
+    this.minuteHandWidth = clockWidth / THRESHOLD * MINUTE_HAND_WIDTH;
+    this.secondHandWidth = clockWidth / THRESHOLD * SECOND_HAND_WIDTH;
+    this.pointDiameter = clockWidth / THRESHOLD * POINT_DIAMETER;
   }
 
   private convertToSeconds(hours: number, minutes: number, seconds: number): number {
     const hh = hours * 3600;
     const mm = minutes * 60;
-    return hh + mm;
+    return hh + mm + seconds;
   }
 }

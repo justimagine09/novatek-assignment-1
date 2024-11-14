@@ -29,7 +29,7 @@ export class TimeServiceService {
   reset() {
     const date = new Date();
 
-    this.hours$$.next(date.getHours());
+    this.hours$$.next(12);
     this.minutes$$.next(date.getMinutes());
     this.seconds$$.next(date.getSeconds());
     this.startTimer();
