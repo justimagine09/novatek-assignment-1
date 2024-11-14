@@ -14,7 +14,6 @@
     width: 100%;
     flex-grow: 1;
     background-color: #140e07;
-    border-radius: 8px;
     color: #b5ac8d;
     
     small {
@@ -26,7 +25,6 @@
   .foot {
     background-color: #875a43;
     padding-top: 2px;
-    border-bottom-left-radius: 2px;
-    border-bottom-right-radius: 2px;
+    border-radius: 25%;
   }
 }
