@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { TimeServiceService } from '../../services/time-service.service';
 
 
-const CLOCK_FONT_SIZE = 3.5;
+const CLOCK_FONT_SIZE = 7;
 const FOOT_HEIGHT = 10;
 const THRESHOLD = 500;
 

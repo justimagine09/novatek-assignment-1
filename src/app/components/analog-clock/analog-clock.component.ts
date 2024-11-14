@@ -8,6 +8,9 @@ interface ClockNumber {
   value: number;
   posX: number;
   posY: number;
+  rotation?: number;
+  width?: number;
+  height?: number;
 }
 
 const HOUR_HAND_WIDTH = 12;
@@ -36,6 +39,7 @@ export class AnalogClockComponent implements AfterViewInit, OnDestroy {
   secondHandWidth = 0;
   pointDiameter = 0;
   numbers: ClockNumber[] = [];
+  lines: ClockNumber[] = [];
 
   private maxHours = 12;
   private maxMinutesAndSeconds = 60;
@@ -44,6 +48,10 @@ export class AnalogClockComponent implements AfterViewInit, OnDestroy {
   constructor(private timeService: TimeServiceService) {
     for (let i = 1; i <= 12; i++) {
       this.numbers.push({value: i, posX: 0, posY: 0});
+    }
+
+    for (let i = 0; i < 60; i++) {
+      this.lines.push({value: i, posX: 0, posY: 0});
     }
 
     combineLatest([this.timeService.hours$, this.timeService.minutes$, this.timeService.seconds$])
@@ -109,8 +117,7 @@ export class AnalogClockComponent implements AfterViewInit, OnDestroy {
   }
 
   setNumbersPositionAndFontSize() {
-    const numbersLength = this.numbers.length;
-    const radius = 360 / numbersLength;
+    let radius = 360 / this.numbers.length;
     const clockWidth = this.clockElementRef?.nativeElement?.clientWidth ?? 0;
     const percentage = 0.8;
     // make half of 80 percent of the circle diameter as distace of the numbers
@@ -127,6 +134,20 @@ export class AnalogClockComponent implements AfterViewInit, OnDestroy {
       
       item.posX = Math.round(distance * Math.cos(itemRadius*(Math.PI/180)));
       item.posY = Math.round(distance * Math.sin(itemRadius*(Math.PI/180)));
+    });
+    
+    radius = 360 / this.lines.length;
+
+    this.lines.forEach((item, index) => {
+      let itemRadius = radius * index;
+      const distance = clockWidth / 2;
+      
+      item.posX = Math.round(distance * Math.cos(itemRadius*(Math.PI/180)));
+      item.posY = Math.round(distance * Math.sin(itemRadius*(Math.PI/180)));
+      item.rotation = itemRadius;
+      item.width = clockWidth / THRESHOLD * (index % 5 == 0 ? 20 : 12);
+      item.height = clockWidth / THRESHOLD * 4;
+      console.log(index % 5);
     });
   }
 

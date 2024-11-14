@@ -16,6 +16,17 @@
       {{ item.value }}
     </span>
 
+    <span
+      *ngFor="let item of lines"
+      class="clock--lines"
+      [style.--pos-x]="item.posX + 'px'"
+      [style.--pos-y]="item.posY + 'px'"
+      [style.--rotation]="item.rotation + 'deg'"
+      [style.width.px]="item.width"
+      [style.height.px]="item.height"
+    >
+    </span>
+
     <div
       class="clock--minute-hand"
       [style.--minute-degree]="minuteDegree"
