@@ -1,0 +1,26 @@
+.main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  
+  .widget {
+    div {
+      display: flex;
+      gap: 12px;
+      margin-top: 4px;
+      
+      button {
+        cursor: pointer;
+        background-color: #000;
+        border: none;
+        color: #fff;
+        font-size: 24px;
+        width: 32px;
+  
+        &:active {
+          background-color: grey;
+        }
+      }
+    }
+  }
+}

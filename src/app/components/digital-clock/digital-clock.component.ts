@@ -37,10 +37,10 @@ export class DigitalClockComponent implements AfterViewInit {
         } else {
           this.hours = 0;
         }
-
+        
         this.minutes = minutes;
         this.seconds = seconds;
-        this.suffix = this.hours >= 12 ? 'PM' : 'AM';
+        this.suffix = hours >= 12 && hours < 24 ? 'PM' : 'AM';
       });
   }
 

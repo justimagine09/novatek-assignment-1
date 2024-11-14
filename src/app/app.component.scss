@@ -5,7 +5,10 @@
   padding-left: 12px;
 
   section {
-    aspect-ratio: 1 / 1;
+    &:first-child {
+      aspect-ratio: 1 / 1;
+      margin-bottom: 24px;
+    }
 
     &:last-child {
       margin-top: 24px;

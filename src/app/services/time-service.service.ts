@@ -45,22 +45,44 @@ export class TimeServiceService {
 
   incrementHour() {
     if (this.hours$$.getValue() >= 24) {
-      this.hours$$.next(0);
+      this.hours$$.next(1);
+      
+      return;
+    }
+    this.hours$$.next(this.hours$$.getValue() + 1);
+  }
+
+  decrementHours() {
+    if (this.hours$$.getValue() <= 0) {
+      this.hours$$.next(23);
       
       return;
     }
 
-    this.hours$$.next(this.hours$$.getValue() + 1);
+    this.hours$$.next(this.hours$$.getValue() - 1);
   }
 
-  incrementMinutes() {
+  incrementMinutes(dontIncrementHours = true) {
     if (this.minutes$$.getValue() >= 59) {
       this.minutes$$.next(0);
-      this.incrementHour();
+
+      if (!dontIncrementHours) {
+        this.incrementHour();
+      }
       return;
     }
 
     this.minutes$$.next(this.minutes$$.getValue() + 1);
+  }
+
+  decrementMinutes() {
+    if (this.minutes$$.getValue() <= 0) {
+      this.minutes$$.next(59);
+      
+      return;
+    }
+
+    this.minutes$$.next(this.minutes$$.getValue() - 1);
   }
 
   incrementSeconds() {
