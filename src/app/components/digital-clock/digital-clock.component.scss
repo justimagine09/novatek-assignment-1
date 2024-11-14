@@ -1,0 +1,32 @@
+.frame {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  aspect-ratio: 3 / 1;
+  border-radius: 8px;
+
+  .clock {
+    position: relative;
+    font-family: analog-clock;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-grow: 1;
+    background-color: #140e07;
+    border-radius: 8px;
+    color: #b5ac8d;
+    
+    small {
+      margin-left: 4px;
+      color: #b37759;
+    }  
+  }
+  
+  .foot {
+    background-color: #875a43;
+    padding-top: 2px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+}

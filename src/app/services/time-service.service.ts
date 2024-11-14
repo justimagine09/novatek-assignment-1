@@ -54,8 +54,8 @@ export class TimeServiceService {
   }
 
   incrementMinutes() {
-    if (this.minutes$$.getValue() >= 60) {
-      this.minutes$$.next(1);
+    if (this.minutes$$.getValue() >= 59) {
+      this.minutes$$.next(0);
       this.incrementHour();
       return;
     }
@@ -64,8 +64,8 @@ export class TimeServiceService {
   }
 
   incrementSeconds() {
-    if (this.seconds$$.getValue() >= 60) {
-      this.seconds$$.next(1);
+    if (this.seconds$$.getValue() >= 59) {
+      this.seconds$$.next(0);
       this.incrementMinutes();
       return;
     }

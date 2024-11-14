@@ -1,5 +1,14 @@
 .main {
-  width: 90%;
-  max-width: 500px;
-  aspect-ratio: 1 / 1;
+  margin: auto;
+  margin-top: 24px;
+  max-width: 600px;
+  padding-left: 12px;
+
+  section {
+    aspect-ratio: 1 / 1;
+
+    &:last-child {
+      margin-top: 24px;
+    }
+  }
 }

@@ -1,0 +1,7 @@
+<div #frame class="frame">
+  <div class="clock" [style.font-size.em]="clockFontSize">
+    {{hours}}:{{minutes}}:<span *ngIf="seconds < 10">0</span>{{seconds}} <small>{{suffix}}</small>
+  </div>
+
+  <div class="foot" [style.height.px]="footHeight"></div>
+</div>

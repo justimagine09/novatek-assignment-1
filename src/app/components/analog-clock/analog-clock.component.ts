@@ -59,6 +59,7 @@ export class AnalogClockComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     HtmlUtilities.resizeObserver(this.frameElementRef!.nativeElement)
+      .pipe(takeUntil(this.destroyed$$))
       .subscribe(() => {
         this.setNumbersPositionAndFontSize();
       }); 
