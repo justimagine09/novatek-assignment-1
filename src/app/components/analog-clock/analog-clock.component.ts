@@ -147,7 +147,6 @@ export class AnalogClockComponent implements AfterViewInit, OnDestroy {
       item.rotation = itemRadius;
       item.width = clockWidth / THRESHOLD * (index % 5 == 0 ? 20 : 12);
       item.height = clockWidth / THRESHOLD * 4;
-      console.log(index % 5);
     });
   }
 
